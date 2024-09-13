@@ -10,7 +10,6 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <Home />
       <Routes>
       <Route path='/' exact={true} component={Home} />
       <Route path='/cartelera' component={Cartelera} />

@@ -1,0 +1,10 @@
+.nav {
+    background: linear-gradient(to right, #000000, #32166e);
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.nav-img {
+    width: 15em;
+}
