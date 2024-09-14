@@ -34,3 +34,26 @@
 .li-a:hover {
     color: #D4D4D4;
 }
+
+@media (max-width: 768px) {
+    .main-nav {
+      align-items: center;
+
+    }
+
+    .nav__ul-img {
+        margin-left: 1em;
+    }
+
+    .ul-img {
+        width: 5em;
+    }
+  
+    .nav-li {
+      padding: 1em;
+    }
+
+    .li-a {
+        font-size: 0.3em;
+    }
+  }
