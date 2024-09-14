@@ -1,10 +1,20 @@
 import React from "react";
-import Navbar from "../components/Navbar/Navbar";
 
 function Home(){
     return(
         <React.Fragment>
-            <h1>HOME</h1>
+            <section>
+                <h1>Banner</h1>
+            </section>
+            <br></br>
+            <section>
+                <h1>Cartelera</h1>
+            </section>
+            <br></br>
+            <section>
+                <h1>Más populares</h1>
+            </section>
+            <br></br>
         </React.Fragment>
     )
 }

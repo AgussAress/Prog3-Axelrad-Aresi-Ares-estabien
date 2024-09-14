@@ -1,6 +1,6 @@
 import React from "react";
 import Opcion from "../Opcion/Opcion";
-import "../Navbar/style.css"
+import "../Navbar/styles.css"
 
 const opciones = [
     {
@@ -25,8 +25,8 @@ const opciones = [
 function Navbar() {
     return (
         <nav className="nav">
-            <ul className="">
-                <img className= "nav-img" src="./imgs/logo.png" alt="logo" />
+            <ul className="nav__ul-img">
+                <img className= "ul-img" src="./imgs/logo.png" alt="logo" />
             </ul>
             <ul className="main-nav">
                 {
