@@ -24,3 +24,24 @@ body {
 h1 {
     color: #fff;
 }
+
+.container {
+    display: flex;
+    justify-content: space-around; 
+    flex-wrap: wrap; 
+    padding: 20px;
+}
+
+.image-box {
+    background-color: #fff;
+    padding: 10px;
+    margin: 10px;
+    width: calc(20% - 40px); 
+    text-align: center;
+}
+
+.image-box img {
+    max-width: 100%; 
+    height: auto;
+    display: block;
+}
