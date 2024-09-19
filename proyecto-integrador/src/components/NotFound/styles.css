@@ -1,0 +1,70 @@
+.not-found-container {
+    text-align: center;
+    padding: 50px;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.not-found-title {
+    font-size: 4rem;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.not-found-subtitle {
+    font-size: 1.5rem;
+    color: #666;
+    margin-bottom: 40px;
+    animation: fadeIn 3s ease-in-out;
+}
+
+.not-found-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    animation: fadeIn 4s ease-in-out;
+}
+
+.not-found-button:hover {
+    background-color: #0056b3;
+}
+
+/* agregamos una animacion para que se vea mejor*/
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+/*hac3mos repsonsive el notfound */
+@media (max-width: 768px) {
+    .not-found-title {
+        font-size: 2.5rem;
+    }
+
+    .not-found-subtitle {
+        font-size: 1rem;
+    }
+
+    .not-found-button {
+        font-size: 0.8rem;
+        padding: 6px 16px;
+    }
+
+    .not-found-container {
+        padding: 30px;
+    }
+}
