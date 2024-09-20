@@ -2,7 +2,7 @@ import Home from './screens/Home'
 import Navbar from './components/Navbar/Navbar';
 import Footer from "./components/Footer/Footer";
 import { Route, Switch } from 'react-router-dom'
-
+import Detalle from './screens/Detalle'
 import Cartelera from "./screens/Cartelera"
 import Populares from "./screens/Populares"
 import Favoritos from "./screens/Favoritos"
@@ -20,6 +20,7 @@ function App() {
         <Route path='/cartelera' component = {Cartelera} />
         <Route path='/favoritos' component = {Favoritos} />
         <Route path='/populares' component = {Populares} />
+        <Route path='/detalle/:id' component = {Detalle} />
         <Route path='' component = {NotFound}/>
       </Switch>
       <Footer/>
