@@ -6,15 +6,15 @@ class Popular extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            peliculas: []
+            peliculas: [],
         };
     }
 
     apiCall(url, consecuencia) {
         fetch(url)
-            .then(response => response.json())
-            .then(data => consecuencia(data))
-            .catch(error => console.log(error));
+            .then((response) => response.json())
+            .then((data) => consecuencia(data))
+            .catch((error) => console.log(error));
     }
 
     componentDidMount() {
@@ -22,24 +22,50 @@ class Popular extends Component {
     }
 
     mostrarPeliculas = (data) => {
+        const peliculas = data.results.slice(0, 5);
+        for (let i = 0; i < peliculas.length; i++) {
+            peliculas[i].verDescripcion = false;
+        }
         this.setState({
-            peliculas: data.results
+            peliculas: peliculas
         });
-    }
+    };
+
+    cambiarVerDescripcion = (index) => {
+        const peliculasActualizadas = this.state.peliculas.slice();
+        peliculasActualizadas[index].verDescripcion = !peliculasActualizadas[index].verDescripcion;
+        this.setState({
+            peliculas: peliculasActualizadas
+        });
+    };
 
     render() {
         return (
-            <section>
-                <h1>Más populares</h1>
+            <section className='home__section'>
+                <h1 className='home__section-h1'> Populares</h1>
                 {this.state.peliculas.length === 0 ? (
                     <p>Cargando...</p>
                 ) : (
-                    <div>
-                        {this.state.peliculas.filter((pelicula, index) => index < 5).map((pelicula, index) => (
-                            <div key={index}>
-                                <img src={`https://image.tmdb.org/t/p/w342/${pelicula.poster_path}`} alt={pelicula.title} />
-                                <p>{pelicula.title}</p>
-                            </div>
+                    <div className='home__section-div'>
+                        {this.state.peliculas.map((pelicula, index) => (
+                            <article className='home__div-article' key={index}>
+                                <img
+                                    className='home__div-img'
+                                    src={`https://image.tmdb.org/t/p/w342/${pelicula.poster_path}`}
+                                    alt={pelicula.title}
+                                />
+                                <h2 className='home__div-h2'>{pelicula.title}</h2>
+
+                                {pelicula.verDescripcion && (
+                                    <p className='home__div-p'>{pelicula.overview}</p>
+                                )}
+                                <button className='home__div-button' onClick={() => this.cambiarVerDescripcion(index)}>
+                                    {pelicula.verDescripcion ? 'Ocultar' : 'Ver descripción'}
+                                </button>
+
+                                <button className='home__div-button'>Ver más</button>
+
+                            </article>
                         ))}
                     </div>
                 )}
@@ -49,3 +75,7 @@ class Popular extends Component {
 }
 
 export default Popular;
+
+
+
+
