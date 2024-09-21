@@ -34,9 +34,9 @@ class Popular extends Component {
                 {this.state.peliculas.length === 0 ? (
                     <p>Cargando...</p>
                 ) : (
-                    <div className = "container">
+                    <div>
                         {this.state.peliculas.filter((pelicula, index) => index < 5).map((pelicula, index) => (
-                            <div className = "image-box" key={index}>
+                            <div key={index}>
                                 <img src={`https://image.tmdb.org/t/p/w342/${pelicula.poster_path}`} alt={pelicula.title} />
                                 <p>{pelicula.title}</p>
                             </div>
