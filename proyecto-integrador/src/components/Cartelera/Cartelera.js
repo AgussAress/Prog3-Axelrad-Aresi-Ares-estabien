@@ -70,15 +70,21 @@ class Cartelera extends Component {
                                     <button className='home__div-button' onClick={() => this.cambiarVerDescripcion(index)}>
                                         {pelicula.verDescripcion ? 'Ocultar' : 'Ver descripción'}
                                     </button>
-                                    <Link to={"/cartelera"} >
-                                    <button className='home__div-button'>Ver todas</button>
-                                    </Link>
+                                    
 
                                 </div>
+                                
                             </article>
                         ))}
+                        
                     </div>
+                    
                 )}
+                <div className='centered-button'>
+                    <Link to={"/cartelera"} >
+                        <button className='home__div-button'>Ver todas</button>
+                    </Link>
+                </div>
             </section>
         );
     }
