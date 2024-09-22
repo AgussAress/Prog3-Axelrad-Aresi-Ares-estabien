@@ -7,8 +7,7 @@ import Cartelera from "./screens/Cartelera"
 import Populares from "./screens/Populares"
 import Favoritos from "./screens/Favoritos"
 import NotFound from "./screens/NotFound"
-
-
+import Resultados from "./screens/Resultados"
 
 
 function App() {
@@ -21,6 +20,7 @@ function App() {
         <Route path='/favoritos' component = {Favoritos} />
         <Route path='/populares' component = {Populares} />
         <Route path='/detalle/:id' component = {Detalle} />
+        <Route path='/resultados' component = {Resultados} />
         <Route path='' component = {NotFound}/>
       </Switch>
       <Footer/>
