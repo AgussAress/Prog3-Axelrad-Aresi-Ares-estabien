@@ -65,9 +65,3 @@
     color: #fff;
     height: 2em;
 }
-
-.centered-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
