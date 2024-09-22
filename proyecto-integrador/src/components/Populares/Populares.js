@@ -67,13 +67,13 @@ class Popular extends Component {
                                         {pelicula.verDescripcion ? 'Ocultar' : 'Ver descripción'}
                                     </button>
                                     <Link to={"/populares"} >
-                                    <button className='home__div-button'>Ver todas</button>
+                                        <button className='home__div-button'>Ver todas</button>
                                     </Link>
                                 </div>
                             </article>
                         ))}
                     </div>
-                )}
+                )}                 
             </section>
         );
     }
