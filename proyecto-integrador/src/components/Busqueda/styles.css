@@ -1,0 +1,35 @@
+.busqueda__div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.busqueda__div-input {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 400;
+    border-radius: 25px; 
+    margin-right: 0.5em;
+    width: 40em;
+    height: 2.5em;
+    border: 2px solid #ddd; 
+    outline: none;
+    background-color: #f9f9f9; 
+    color: #333; 
+    padding: 0 1.5em; 
+}
+
+.busqueda__div-input:focus {
+    border-color: #6C2FED; 
+    background-color: #fff; 
+}
+
+.busqueda__div-input::placeholder {
+    color: #999; 
+    opacity: 0.7; 
+}
+
+.busqueda__icon {
+    color: #6C2FED;
+    font-size: 1.2em;
+    margin-left: -2.5em;
+}

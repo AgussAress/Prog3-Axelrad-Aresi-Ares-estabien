@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import "../Cartelera/styles.css";
 
 const APIKEY = 'e085a8d4a0502afc1d3c8e65c53af130';
@@ -53,22 +54,27 @@ class Cartelera extends Component {
                     <div className='home__section-div'>
                         {this.state.peliculas.map((pelicula, index) => (
                             <article className='home__div-article' key={index}>
-                                <img
-                                    className='home__div-img'
-                                    src={`https://image.tmdb.org/t/p/w342/${pelicula.poster_path}`}
-                                    alt={pelicula.title}
-                                />
+                                <Link to={`/detalle/${pelicula.id}`}>
+                                    <img
+                                        className='home__div-img'
+                                        src={`https://image.tmdb.org/t/p/w342/${pelicula.poster_path}`}
+                                        alt={pelicula.title}
+                                    />
+                                </Link>
                                 <h2 className='home__div-h2'>{pelicula.title}</h2>
 
                                 {pelicula.verDescripcion && (
                                     <p className='home__div-p'>{pelicula.overview}</p>
                                 )}
-                                <button className='home__div-button' onClick={() => this.cambiarVerDescripcion(index)}>
-                                    {pelicula.verDescripcion ? 'Ocultar' : 'Ver descripción'}
-                                </button>
+                                <div className="button-container">
+                                    <button className='home__div-button' onClick={() => this.cambiarVerDescripcion(index)}>
+                                        {pelicula.verDescripcion ? 'Ocultar' : 'Ver descripción'}
+                                    </button>
+                                    <Link to={"/cartelera"} >
+                                    <button className='home__div-button'>Ver todas</button>
+                                    </Link>
 
-                                <button className='home__div-button'>Ver más</button>
-
+                                </div>
                             </article>
                         ))}
                     </div>

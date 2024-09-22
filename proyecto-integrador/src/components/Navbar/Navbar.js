@@ -1,6 +1,7 @@
 import React from "react";
 import Opcion from "../Opcion/Opcion";
 import "../Navbar/styles.css"
+import { Link } from "react-router-dom"
 
 const opciones = [
     {
@@ -26,7 +27,9 @@ function Navbar() {
     return (
         <nav className="nav">
             <ul className="nav__ul-img">
-                <img className= "ul-img" src="./imgs/logo.png" alt="logo" />
+                <Link to="/">
+                    <img className="ul-img" src="./imgs/logo.png" alt="logo" />
+                </Link>
             </ul>
             <ul className="main-nav">
                 {
