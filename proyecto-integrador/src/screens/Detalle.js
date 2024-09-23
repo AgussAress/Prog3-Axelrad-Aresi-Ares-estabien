@@ -1,4 +1,5 @@
 import React, {Component} from "react"
+import DetalleFavs from "../components/Detalle Favoritos/DetalleFavs";
 const APIKEY = 'e085a8d4a0502afc1d3c8e65c53af130';
 
 class Detalle extends Component {
@@ -20,6 +21,7 @@ class Detalle extends Component {
     }
 
     componentDidMount(){
+        console.log('props detalle', this.props)
         const movie_id = this.props.match.params.id
         this.apiCall(`https://api.themoviedb.org/3/movie/${movie_id}?api_key=${APIKEY}`)
     }
@@ -33,7 +35,7 @@ class Detalle extends Component {
                 <p>Rating: {this.state.pelicula.vote_average}</p>
                 <p>Fecha de estreno: {this.state.pelicula.release_date}</p>
                 <p>Genero: {this.state.pelicula.genre_ids}</p>
-                <button>Favoritos ❤</button>
+                <DetalleFavs data= {this.state.pelicula} match = {this.props.match}/>
             </div>
         );
     }
