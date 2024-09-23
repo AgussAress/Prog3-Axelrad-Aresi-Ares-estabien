@@ -61,7 +61,7 @@ class DetalleFavs extends Component {
               {
                  this.state.esFavorito ?
                  <button>
-                    Sacar de favs
+                    Sacar de Favoritos ❤
                  </button>
                  :
                  <button onClick = {()=> this.agregarAStrorage(this.props.data.id)}>
