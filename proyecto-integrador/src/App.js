@@ -20,7 +20,7 @@ function App() {
         <Route path='/favoritos' component = {Favoritos} />
         <Route path='/populares' component = {Populares} />
         <Route path='/detalle/:id' component = {Detalle} />
-        <Route path='/resultados' component = {Resultados} />
+        <Route path='/resultados' exact={true} component = {Resultados} />
         <Route path='' component = {NotFound}/>
       </Switch>
       <Footer/>
