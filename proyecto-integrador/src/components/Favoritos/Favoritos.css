@@ -1,0 +1,8 @@
+.favDiv {
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: space-around; 
+    align-items: center; 
+    gap: 10px; 
+    padding: 20px;
+}
