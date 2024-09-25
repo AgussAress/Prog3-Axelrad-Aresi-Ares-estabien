@@ -1,0 +1,37 @@
+.movie-detail-container {
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 800px;
+    text-align: center;
+}
+
+.movie-detail-title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #e0e0e0;
+}
+
+.movie-detail-poster {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.movie-detail-description {
+    font-size: 1.2rem;
+    color: #c5c5c5;
+    margin-bottom: 10px;
+}
+
+.movie-detail-rating {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #c3c1c1;
+}
+
+.movie-detail-release-date, .movie-detail-genre {
+    font-size: 1rem;
+    color: #cccbcb;
+    margin-top: 5px;
+}

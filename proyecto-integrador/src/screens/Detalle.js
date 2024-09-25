@@ -1,6 +1,7 @@
 import React, {Component} from "react"
-import DetalleFavs from "../components/Detalle Favoritos/DetalleFavs";
+import DetalleFavs from "../components/DetalleFavoritos/DetalleFavs";
 const APIKEY = 'e085a8d4a0502afc1d3c8e65c53af130';
+
 
 class Detalle extends Component {
     constructor(props) {
@@ -28,13 +29,13 @@ class Detalle extends Component {
 
     render(){
         return(
-            <div>
-                <h1 className='home__section-h1'>Detalle: {this.state.pelicula.title}</h1>
-                <img className='home__div-img' src = {`https://image.tmdb.org/t/p/w500/${this.state.pelicula.poster_path}`} alt = ""/>
-                <p>Descripcion: {this.state.pelicula.overview}</p>
-                <p>Rating: {this.state.pelicula.vote_average}</p>
-                <p>Fecha de estreno: {this.state.pelicula.release_date}</p>
-                <p>Genero: {this.state.pelicula.genre_ids}</p>
+            <div className="movie-detail-container">
+                <h1 className="movie-detail-title">Detalle: {this.state.pelicula.title}</h1>
+                <img className="movie-detail-poster" src = {`https://image.tmdb.org/t/p/w500/${this.state.pelicula.poster_path}`} alt = ""/>
+                <p className="movie-detail-description">Descripcion: {this.state.pelicula.overview}</p>
+                <p className="movie-detail-rating">Rating: {this.state.pelicula.vote_average}</p>
+                <p className="movie-detail-release-date">Fecha de estreno: {this.state.pelicula.release_date}</p>
+                <p className="movie-detail-genre">Genero: {this.state.pelicula.genre_ids}</p>
                 <DetalleFavs data= {this.state.pelicula} match = {this.props.match}/>
             </div>
         );
