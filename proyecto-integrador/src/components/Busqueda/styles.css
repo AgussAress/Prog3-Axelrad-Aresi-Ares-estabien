@@ -33,3 +33,110 @@
     font-size: 1.2em;
     margin-left: -2.5em;
 }
+
+
+
+.cargando__gif-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.cargando__gif {
+    width: 150px;
+    height: auto;
+    animation: girar 2s infinite linear;
+}
+
+
+
+
+
+
+/* Sección general de la cartelera o resultados */
+.peliculas__section {
+    padding: 2em;
+}
+
+.peliculas__section-div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* Título de la sección */
+.peliculas__section-h1 {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Artículo de cada película */
+.peliculas__div-article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 15em;
+    margin: 1em;
+    padding: 1em;
+}
+
+/* Imagen de cada película */
+.peliculas__div-img {
+    width: 17em;
+    border-radius: 0.5em;
+}
+
+/* Título de cada película */
+.peliculas__div-h2 {
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1em;
+    text-align: center;
+}
+
+/* Descripción de la película (opcional si se incluye) */
+.peliculas__div-p {
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-size: 0.9em;
+    text-align: center;
+}
+
+/* Contenedor para el botón de ver descripción o cualquier botón adicional */
+.button-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 1em;
+}
+
+.peliculas__div-button {
+    margin-bottom: 1em;
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    border-radius: 3em;
+    background-color: #2E1465;
+    border-color: #6C2FED;
+    color: #fff;
+    height: 2em;
+    padding: 0 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.peliculas__div-button:hover {
+    background-color: #6C2FED;
+}
+
+.res-bus {
+    display: flex;
+    justify-content: center;
+}
