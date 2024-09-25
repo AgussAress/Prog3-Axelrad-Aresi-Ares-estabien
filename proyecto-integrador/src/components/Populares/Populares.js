@@ -79,7 +79,7 @@ class Populares extends Component {
                     </div>
 
                 )}
-                <Link className="link-button" to={"/cartelera"} >
+                <Link className="link-button" to={"/populares"} >
                     <button className='home__div-button2'>Ver todas</button>
                 </Link>
             </section>
