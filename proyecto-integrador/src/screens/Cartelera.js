@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import "../components/Busqueda/styles.css"
 
 const APIKEY = 'e085a8d4a0502afc1d3c8e65c53af130';
 
@@ -8,6 +11,9 @@ class Cartelera extends Component {
         super(props);
         this.state = {
             peliculas: [],
+            page: 1,
+            valorInput: '',
+            peliculasFiltradas: [],
         };
     }
 
@@ -19,39 +25,83 @@ class Cartelera extends Component {
     }
 
     componentDidMount() {
-        this.apiCall(
-            `https://api.themoviedb.org/3/movie/now_playing?api_key=${APIKEY}&language=es-ES&page=1`,
-            this.mostrarPeliculas
-        );
+        this.cargarPeliculas();
     }
 
+    cargarPeliculas = () => {
+        const { page } = this.state;
+        this.apiCall(
+            `https://api.themoviedb.org/3/movie/now_playing?api_key=${APIKEY}&language=es-ES&page=${page}`,
+            this.mostrarPeliculas
+        );
+    };
+
     mostrarPeliculas = (data) => {
-        const peliculas = data.results;
-        for (let i = 0; i < peliculas.length; i++) {
-            peliculas[i].verDescripcion = false;
-        }
+        console.log('data', data);
+        const nuevasPeliculas = data.results.map((pelicula) => {
+            pelicula.verDescripcion = false;
+            return pelicula;
+        });
+
+        const peliculasActualizadas = this.state.peliculas.concat(nuevasPeliculas);
+
         this.setState({
-            peliculas: peliculas
+            peliculas: peliculasActualizadas,
+            peliculasFiltradas: peliculasActualizadas,
         });
     };
 
     cambiarVerDescripcion = (index) => {
-        const peliculasActualizadas = this.state.peliculas;
+        const peliculasActualizadas = [...this.state.peliculasFiltradas];
         peliculasActualizadas[index].verDescripcion = !peliculasActualizadas[index].verDescripcion;
         this.setState({
-            peliculas: peliculasActualizadas
+            peliculasFiltradas: peliculasActualizadas,
         });
+    };
+
+    cargarMas = () => {
+        this.setState(
+            (prevState) => ({ page: prevState.page + 1 }),
+            this.cargarPeliculas
+        );
+    };
+
+    controlarInput = (event) => {
+        const valorInput = event.target.value.toLowerCase();
+        const peliculasFiltradas = this.state.peliculas.filter((pelicula) =>
+            pelicula.title.toLowerCase().includes(valorInput)
+        );
+        this.setState({ valorInput, peliculasFiltradas });
+    };
+
+    evitarSubmit = (event) => {
+        event.preventDefault();
     };
 
     render() {
         return (
             <section className='home__section'>
+
+                <form className="busqueda__form" onSubmit={this.evitarSubmit}>
+                    <div className="busqueda__div">
+                        <input
+                            className="busqueda__div-input"
+                            type="text"
+                            value={this.state.valorInput}
+                            onChange={this.controlarInput}
+                            placeholder="Buscar por título"
+                        />
+                        <FontAwesomeIcon className="busqueda__icon" icon={faSearch} />
+                    </div>
+                </form>
+
                 <h1 className='home__section-h1'> Cartelera</h1>
-                {this.state.peliculas.length === 0 ? (
+
+                {this.state.peliculasFiltradas.length === 0 ? (
                     <p>Cargando...</p>
                 ) : (
                     <div className='home__section-div'>
-                        {this.state.peliculas.map((pelicula, index) => (
+                        {this.state.peliculasFiltradas.map((pelicula, index) => (
                             <article className='home__div-article' key={index}>
                                 <Link to={`/detalle/${pelicula.id}`}>
                                     <img
@@ -69,15 +119,20 @@ class Cartelera extends Component {
                                     <button className='home__div-button' onClick={() => this.cambiarVerDescripcion(index)}>
                                         {pelicula.verDescripcion ? 'Ocultar' : 'Ver descripción'}
                                     </button>
-
                                 </div>
                             </article>
                         ))}
                     </div>
                 )}
+                <div className="link-button">
+                    <button className='home__div-button2 cargar-mas' onClick={this.cargarMas}>
+                        Cargar más
+                    </button>
+                </div>
             </section>
         );
     }
 }
 
 export default Cartelera;
+

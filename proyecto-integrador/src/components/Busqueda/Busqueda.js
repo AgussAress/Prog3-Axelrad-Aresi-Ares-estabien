@@ -2,38 +2,49 @@ import React, { useState } from "react";
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import "../Busqueda/styles.css"
-import { useHistory } from "react-router-dom"
 
-function Busqueda() {
-    const [query, setQuery] = useState("") // necesitamos guardar lo q se busca
-    const history = useHistory()
+import { Component } from "react";
 
-    const valorIngresado = (event) => {
-        setQuery(event.target.value)
-    }
-
-    const redirectAResultados = (event) => {
-        if (query.trim()) {
-            // con lo que se busca lo mandamos a resultaods 
-            history.push(`/resultados?query=${query}`)
+class Busqueda extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            query: ''
         }
     }
 
-    return (
-        <form className="busqueda__form" onSubmit={redirectAResultados}>
-            <label htmlFor="search"> Buscar </label>
-            <div className="busqueda__div">
+
+    cambioEnInput(event) {
+        this.setState({
+            query: event.target.value
+        });
+    }
+
+
+    evitarSubmit(event) {
+        event.preventDefault();
+        this.props.history.push(
+            '/resultados',
+            { busqueda: this.state.query }
+        );
+    }
+
+    render() {
+        return (
+            <form className="busqueda__form" onSubmit={(e) => this.evitarSubmit(e)}>
+                <div className="busqueda__div">
                 <input
                     className="busqueda__div-input"
                     type="text"
+                    value={this.state.query}
+                    onChange={(e) => this.cambioEnInput(e)}
                     placeholder="Buscar"
-                    value={query}
-                    onChange={valorIngresado}
                 />
-                <FontAwesomeIcon className="busqueda__icon" icon={faSearch} onClick={redirectAResultados} />
-            </div>
-        </form>
-    );
+                <FontAwesomeIcon className="busqueda__icon" icon={faSearch}  />
+                </div>
+            </form>
+        );
+    }
 }
 
 export default Busqueda;

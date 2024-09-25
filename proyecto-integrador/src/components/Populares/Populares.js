@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import "../Cartelera/styles.css";
 
 const APIKEY = 'e085a8d4a0502afc1d3c8e65c53af130';
 
-class Popular extends Component {
+class Populares extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -19,16 +20,19 @@ class Popular extends Component {
     }
 
     componentDidMount() {
-        this.apiCall(`https://api.themoviedb.org/3/movie/popular?api_key=${APIKEY}&language=es-ES&page=1`, this.mostrarPeliculas);
+        this.apiCall(
+            this.apiCall(`https://api.themoviedb.org/3/movie/popular?api_key=${APIKEY}&language=es-ES&page=1`, this.mostrarPeliculas)
+        );
     }
 
     mostrarPeliculas = (data) => {
-        const peliculas = data.results.slice(0, 5);
-        for (let i = 0; i < peliculas.length; i++) {
-            peliculas[i].verDescripcion = false;
-        }
+        console.log('data', data);
+        const peliculas = data.results.map((pelicula) => {
+            pelicula.verDescripcion = false;
+            return pelicula;
+        });
         this.setState({
-            peliculas: peliculas
+            peliculas: peliculas.slice(0, 5),
         });
     };
 
@@ -43,7 +47,7 @@ class Popular extends Component {
     render() {
         return (
             <section className='home__section'>
-                <h1 className='home__section-h1'> Populares</h1>
+                <h1 className='home__section-h1'> Cartelera</h1>
                 {this.state.peliculas.length === 0 ? (
                     <p>Cargando...</p>
                 ) : (
@@ -66,21 +70,24 @@ class Popular extends Component {
                                     <button className='home__div-button' onClick={() => this.cambiarVerDescripcion(index)}>
                                         {pelicula.verDescripcion ? 'Ocultar' : 'Ver descripción'}
                                     </button>
-                                    <Link to={"/populares"} >
-                                        <button className='home__div-button'>Ver todas</button>
-                                    </Link>
                                 </div>
+
                             </article>
+
                         ))}
+
                     </div>
-                )}                 
+
+                )}
+                <Link className="link-button" to={"/cartelera"} >
+                    <button className='home__div-button2'>Ver todas</button>
+                </Link>
             </section>
         );
     }
 }
 
-export default Popular;
-
+export default Populares;
 
 
 

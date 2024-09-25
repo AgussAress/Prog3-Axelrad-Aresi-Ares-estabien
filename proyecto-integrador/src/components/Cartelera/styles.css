@@ -65,3 +65,23 @@
     color: #fff;
     height: 2em;
 }
+
+.link-button {
+    display: flex;
+    justify-content: center;
+}
+
+.home__div-button2 {
+    margin-bottom: 1em;
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    border-radius: 3em;
+    background-color: #2E1465;
+    border-color: #6C2FED;
+    color: #fff;
+    font-size: 0.9em;
+    height: 3em;
+    width: 10em;
+}

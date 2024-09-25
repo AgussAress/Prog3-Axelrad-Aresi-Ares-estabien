@@ -23,12 +23,13 @@ class Popular extends Component {
     }
 
     mostrarPeliculas = (data) => {
-        const peliculas = data.results;
-        for (let i = 0; i < peliculas.length; i++) {
-            peliculas[i].verDescripcion = false;
-        }
+        console.log('data', data);
+        const peliculas = data.results.map((pelicula) => {
+            pelicula.verDescripcion = false; 
+            return pelicula;
+        });
         this.setState({
-            peliculas: peliculas
+            peliculas: peliculas,
         });
     };
 

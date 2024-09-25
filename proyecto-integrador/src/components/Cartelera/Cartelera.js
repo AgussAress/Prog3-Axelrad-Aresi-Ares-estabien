@@ -27,12 +27,13 @@ class Cartelera extends Component {
     }
 
     mostrarPeliculas = (data) => {
-        const peliculas = data.results.slice(0, 5);
-        for (let i = 0; i < peliculas.length; i++) {
-            peliculas[i].verDescripcion = false;
-        }
+        console.log('data', data);
+        const peliculas = data.results.map((pelicula) => {
+            pelicula.verDescripcion = false; 
+            return pelicula;
+        });
         this.setState({
-            peliculas: peliculas
+            peliculas: peliculas.slice(0,5),
         });
     };
 
@@ -70,17 +71,18 @@ class Cartelera extends Component {
                                     <button className='home__div-button' onClick={() => this.cambiarVerDescripcion(index)}>
                                         {pelicula.verDescripcion ? 'Ocultar' : 'Ver descripción'}
                                     </button>
-                                    <Link to={"/cartelera"} >
-                                        <button className='home__div-button'>Ver todas</button>
-                                    </Link>
                                 </div>
-                                
+
                             </article>
+
                         ))}
-                        
+
                     </div>
-                    
+
                 )}
+                <Link className="link-button" to={"/cartelera"} >
+                    <button className='home__div-button2'>Ver todas</button>
+                </Link>
             </section>
         );
     }
