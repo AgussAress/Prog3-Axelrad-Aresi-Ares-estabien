@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
+
 const API_KEY = "e085a8d4a0502afc1d3c8e65c53af130";
+
 
 export default class Resultados extends Component {
     constructor(props) {
@@ -20,8 +23,15 @@ export default class Resultados extends Component {
             .then(response => response.json())
             Promise.all([minimumLoadingTime, apiCall])
             .then(([_, data]) => {
+                const resultadosConDescripcion = data.results.map(pelicula => {
+                    return {
+                        ...pelicula,
+                        verDescripcion: false
+                    };
+                });
+
                 this.setState({ 
-                    resultados: data.results || [],
+                    resultados: resultadosConDescripcion || [],
                     loading: false
                 });
             })
@@ -29,6 +39,14 @@ export default class Resultados extends Component {
                 console.log(error)
                 this.setState({ loading: false })
             });
+        
+    }
+    cambiarVerDescripcion = (index) => {
+        const resultadosActualizados = [...this.state.resultados];
+        resultadosActualizados[index].verDescripcion = !resultadosActualizados[index].verDescripcion;
+        this.setState({
+            resultados: resultadosActualizados
+        })
     }
 
     render() {
@@ -44,11 +62,29 @@ export default class Resultados extends Component {
                         <div className="peliculas__section-div">
                             {this.state.resultados.map((pelicula, index) => (
                                 <article className="peliculas__div-article" key={index}>
-                                    <img className='peliculas__div-img'
-                                        src={`https://image.tmdb.org/t/p/w342/${pelicula.poster_path}`} 
-                                        alt={pelicula.title} 
-                                    />
+                                    {/* Enlace al detalle de la película */}
+                                    <Link to={`/detalle/${pelicula.id}`}>
+                                        <img className='peliculas__div-img'
+                                            src={`https://image.tmdb.org/t/p/w342/${pelicula.poster_path}`} 
+                                            alt={pelicula.title} 
+                                        />
+                                    </Link>
                                     <h2 className='peliculas__div-h2'>{pelicula.title}</h2>
+
+                                    {/* Mostrar descripción si está activa */}
+                                    {pelicula.verDescripcion && (
+                                        <p className='peliculas__div-p'>{pelicula.overview}</p>
+                                    )}
+
+                                    {/* Botón para cambiar entre ver/ocultar descripción */}
+                                    <div className="button-container">
+                                        <button 
+                                            className='peliculas__div-button' 
+                                            onClick={() => this.cambiarVerDescripcion(index)}
+                                        >
+                                            {pelicula.verDescripcion ? 'Ocultar' : 'Ver descripción'}
+                                        </button>
+                                    </div>
                                 </article>
                             ))}
                         </div>
@@ -56,7 +92,7 @@ export default class Resultados extends Component {
                         <div>
                             <br></br>
                             <hr></hr>
-                        <h1 className="res-bus" >No hay resultados de búsqueda</h1>
+                            <h1 className="res-bus">No hay resultados de búsqueda</h1>
                         </div>
                     )
                 )}
