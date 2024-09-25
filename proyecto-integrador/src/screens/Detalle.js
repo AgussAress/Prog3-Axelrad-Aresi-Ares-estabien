@@ -29,8 +29,8 @@ class Detalle extends Component {
     render(){
         return(
             <div>
-                <h1>Detalle: {this.state.pelicula.title}</h1>
-                <img src = {`https://image.tmdb.org/t/p/w500/${this.state.pelicula.poster_path}`} alt = ""/>
+                <h1 className='home__section-h1'>Detalle: {this.state.pelicula.title}</h1>
+                <img className='home__div-img' src = {`https://image.tmdb.org/t/p/w500/${this.state.pelicula.poster_path}`} alt = ""/>
                 <p>Descripcion: {this.state.pelicula.overview}</p>
                 <p>Rating: {this.state.pelicula.vote_average}</p>
                 <p>Fecha de estreno: {this.state.pelicula.release_date}</p>
