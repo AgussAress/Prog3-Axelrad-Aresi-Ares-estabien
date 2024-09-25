@@ -7,7 +7,7 @@ class Favoritos extends Component{
         super(props);
         this.state = {
             peliculasFav:[],
-            poster_path: props.poster_path
+            
         };
     }
 
@@ -24,17 +24,15 @@ class Favoritos extends Component{
 
 
     componentDidMount(){
-        console.log('props detalle', this.props)
-        const movie_id = this.props.match.params.id
-        this.apiCall(`https://api.themoviedb.org/3/movie/${movie_id}?api_key=${APIKEY}`)
+        
         let storage = localStorage.getItem("Favs") //recupero el storage donde estan los ids
         if (storage!==null){
-            let storageParseado = JSON.parse(storage) //si no es null, y hay algo, lo parseo y busco con fetch el detalle
+            const storageParseado = JSON.parse(storage);
 
-            Promise.all( //el fetch resulve info, el then la desenvuelve y el promise all junta todo, por ende puedo hacer thens de todo junto y recibir la data
+            Promise.all(
                 storageParseado.map(elm =>
                     fetch(`https://api.themoviedb.org/3/movie/${elm}?api_key=${APIKEY}`)
-                    .then(resp => resp.json())
+                        .then(resp => resp.json())
                 )
             )
            // .then(data=> console.log('Then del promiseAll', data)) // con este camino obtengo un array completo con todo agrupado
@@ -48,7 +46,15 @@ class Favoritos extends Component{
                     <h1 className = "home__section-h1">Estos son los Favoritos</h1> 
                     {this.state.peliculasFav.length >0 ? 
                     this.state.peliculasFav.map(elm => 
-                        <img key={elm.id} src={`https://image.tmdb.org/t/p/w342/$%7B${this.state.poster_path}`} alt="probando" /> )
+                        (
+                            <div key={elm.id}>
+                                <h2>{elm.title}</h2>
+                                <img
+                                    src={`https://image.tmdb.org/t/p/w342/${elm.poster_path}`}
+                                    alt={elm.title}
+                                />
+                            </div>
+                        ) )
                     :
                     <h1>No hay peliculas Favoritas</h1>
                     } 
