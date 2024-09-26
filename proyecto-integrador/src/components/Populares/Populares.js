@@ -47,7 +47,7 @@ class Populares extends Component {
     render() {
         return (
             <section className='home__section'>
-                <h1 className='home__section-h1'> Cartelera</h1>
+                <h1 className='home__section-h1'> Populares </h1>
                 {this.state.peliculas.length === 0 ? (
                     <p>Cargando...</p>
                 ) : (

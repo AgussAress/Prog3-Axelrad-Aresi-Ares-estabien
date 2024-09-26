@@ -89,7 +89,7 @@ class Cartelera extends Component {
                             type="text"
                             value={this.state.valorInput}
                             onChange={this.controlarInput}
-                            placeholder="Buscar por título"
+                            placeholder="Buscar películas de Cartelera"
                         />
                         <FontAwesomeIcon className="busqueda__icon" icon={faSearch} />
                     </div>
@@ -98,7 +98,9 @@ class Cartelera extends Component {
                 <h1 className='home__section-h1'> Cartelera</h1>
 
                 {this.state.peliculasFiltradas.length === 0 ? (
-                    <p>Cargando...</p>
+                    <div className="cargando__gif-container">
+                        <img src="/imgs/carga.webp" alt="Cargando..." className="cargando__gif" />
+                    </div>
                 ) : (
                     <div className='home__section-div'>
                         {this.state.peliculasFiltradas.map((pelicula, index) => (
