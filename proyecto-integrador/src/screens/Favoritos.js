@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
-import "../components/Favoritos/Favoritos.css"
 const APIKEY = 'e085a8d4a0502afc1d3c8e65c53af130';
 
 class Favoritos extends Component {
