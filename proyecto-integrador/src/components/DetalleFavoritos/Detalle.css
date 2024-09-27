@@ -35,3 +35,13 @@
     color: #cccbcb;
     margin-top: 5px;
 }
+
+/* Trasladamos los estilos del CSS Favoritos a esta carpeta */
+.favDiv {
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: space-around; 
+    align-items: center; 
+    gap: 10px; 
+    padding: 20px;
+}
