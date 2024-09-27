@@ -13,7 +13,6 @@ class Busqueda extends Component {
         }
     }
 
-
     cambioEnInput(event) {
         this.setState({
             query: event.target.value
@@ -33,14 +32,14 @@ class Busqueda extends Component {
         return (
             <form className="busqueda__form" onSubmit={(e) => this.evitarSubmit(e)}>
                 <div className="busqueda__div">
-                <input
-                    className="busqueda__div-input"
-                    type="text"
-                    value={this.state.query}
-                    onChange={(e) => this.cambioEnInput(e)}
-                    placeholder="Buscar"
-                />
-                <FontAwesomeIcon className="busqueda__icon" icon={faSearch}  />
+                    <input
+                        className="busqueda__div-input"
+                        type="text"
+                        value={this.state.query}
+                        onChange={(e) => this.cambioEnInput(e)}
+                        placeholder="Buscar"
+                    />
+                    <FontAwesomeIcon className="busqueda__icon" icon={faSearch} />
                 </div>
             </form>
         );
