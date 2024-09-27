@@ -34,8 +34,6 @@
     margin-left: -2.5em;
 }
 
-
-
 .cargando__gif-container {
     display: flex;
     justify-content: center;
@@ -50,11 +48,6 @@
 }
 
 
-
-
-
-
-/* Sección general de la cartelera o resultados */
 .peliculas__section {
     padding: 2em;
 }
@@ -65,7 +58,6 @@
     justify-content: space-between;
 }
 
-/* Título de la sección */
 .peliculas__section-h1 {
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
@@ -73,7 +65,6 @@
     font-style: normal;
 }
 
-/* Artículo de cada película */
 .peliculas__div-article {
     display: flex;
     flex-direction: column;
@@ -83,13 +74,11 @@
     padding: 1em;
 }
 
-/* Imagen de cada película */
 .peliculas__div-img {
     width: 17em;
     border-radius: 0.5em;
 }
 
-/* Título de cada película */
 .peliculas__div-h2 {
     font-family: "Open Sans", sans-serif;
     font-optical-sizing: auto;
@@ -99,7 +88,6 @@
     text-align: center;
 }
 
-/* Descripción de la película (opcional si se incluye) */
 .peliculas__div-p {
     font-family: "Open Sans", sans-serif;
     font-optical-sizing: auto;
@@ -108,7 +96,6 @@
     text-align: center;
 }
 
-/* Contenedor para el botón de ver descripción o cualquier botón adicional */
 .button-container {
     display: flex;
     gap: 10px;
@@ -142,14 +129,21 @@
 }
 
 @media (max-width: 768px) {
+    .busqueda__div {
+        flex-direction: column;
+    }
     .busqueda__div-input {
         width: 20em;
         height: 2em;
-        padding: 0 1em;
     }
 
     .busqueda__icon {
         font-size: 1em;
         margin-left: -2em;
+    }
+
+    .peliculas__div-article {
+        width: 100%;
+        margin: 0.5em;
     }
 }
