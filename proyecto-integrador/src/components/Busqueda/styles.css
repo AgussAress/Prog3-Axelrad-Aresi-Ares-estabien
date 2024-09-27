@@ -129,9 +129,6 @@
 }
 
 @media (max-width: 768px) {
-    .busqueda__div {
-        flex-direction: column;
-    }
     .busqueda__div-input {
         width: 20em;
         height: 2em;

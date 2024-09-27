@@ -12,30 +12,24 @@ class Cartelera extends Component {
         };
     }
 
-    apiCall(url, consecuencia) {
-        fetch(url)
+    apiCall(url) {
+        return fetch(url)
             .then((response) => response.json())
-            .then((data) => consecuencia(data))
             .catch((error) => console.log(error));
     }
 
     componentDidMount() {
-        this.apiCall(
-            `https://api.themoviedb.org/3/movie/now_playing?api_key=${APIKEY}&language=es-ES&page=1`,
-            this.mostrarPeliculas
-        );
+        this.apiCall(`https://api.themoviedb.org/3/movie/now_playing?api_key=${APIKEY}&language=es-ES&page=1`)
+            .then((data) => {
+                const peliculas = data.results.map((pelicula) => {
+                    pelicula.verDescripcion = false;
+                    return pelicula;
+                });
+                this.setState({
+                    peliculas: peliculas.slice(0, 5),
+                });
+            });
     }
-
-    mostrarPeliculas = (data) => {
-        console.log('data', data);
-        const peliculas = data.results.map((pelicula) => {
-            pelicula.verDescripcion = false; 
-            return pelicula;
-        });
-        this.setState({
-            peliculas: peliculas.slice(0,5),
-        });
-    };
 
     cambiarVerDescripcion = (index) => {
         const peliculasActualizadas = this.state.peliculas.slice();

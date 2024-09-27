@@ -17,10 +17,9 @@ class Cartelera extends Component {
         };
     }
 
-    apiCall(url, consecuencia) {
-        fetch(url)
+    apiCall(url) {
+        return fetch(url)
             .then((response) => response.json())
-            .then((data) => consecuencia(data))
             .catch((error) => console.log(error));
     }
 
@@ -30,25 +29,20 @@ class Cartelera extends Component {
 
     cargarPeliculas = () => {
         const { page } = this.state;
-        this.apiCall(
-            `https://api.themoviedb.org/3/movie/now_playing?api_key=${APIKEY}&language=es-ES&page=${page}`,
-            this.mostrarPeliculas
-        );
-    };
+        this.apiCall(`https://api.themoviedb.org/3/movie/now_playing?api_key=${APIKEY}&language=es-ES&page=${page}`)
+            .then((data) => {
+                const nuevasPeliculas = data.results.map((pelicula) => {
+                    pelicula.verDescripcion = false;
+                    return pelicula;
+                });
 
-    mostrarPeliculas = (data) => {
-        console.log('data', data);
-        const nuevasPeliculas = data.results.map((pelicula) => {
-            pelicula.verDescripcion = false;
-            return pelicula;
-        });
+                const peliculasActualizadas = this.state.peliculas.concat(nuevasPeliculas);
 
-        const peliculasActualizadas = this.state.peliculas.concat(nuevasPeliculas);
-
-        this.setState({
-            peliculas: peliculasActualizadas,
-            peliculasFiltradas: peliculasActualizadas,
-        });
+                this.setState({
+                    peliculas: peliculasActualizadas,
+                    peliculasFiltradas: peliculasActualizadas,
+                });
+            });
     };
 
     cambiarVerDescripcion = (index) => {
@@ -137,4 +131,5 @@ class Cartelera extends Component {
 }
 
 export default Cartelera;
+
 

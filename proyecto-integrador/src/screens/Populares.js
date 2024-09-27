@@ -16,10 +16,9 @@ class Popular extends Component {
         };
     }
 
-    apiCall(url, consecuencia) {
-        fetch(url)
+    apiCall(url) {
+        return fetch(url)
             .then((response) => response.json())
-            .then((data) => consecuencia(data))
             .catch((error) => console.log(error));
     }
 
@@ -29,24 +28,20 @@ class Popular extends Component {
 
     cargarPeliculas = () => {
         const { page } = this.state;
-        this.apiCall(
-            `https://api.themoviedb.org/3/movie/popular?api_key=${APIKEY}&language=es-ES&page=${page}`,
-            this.mostrarPeliculas
-        );
-    };
+        this.apiCall(`https://api.themoviedb.org/3/movie/popular?api_key=${APIKEY}&language=es-ES&page=${page}`)
+            .then((data) => {
+                const nuevasPeliculas = data.results.map((pelicula) => {
+                    pelicula.verDescripcion = false;
+                    return pelicula;
+                });
 
-    mostrarPeliculas = (data) => {
-        const nuevasPeliculas = data.results.map((pelicula) => {
-            pelicula.verDescripcion = false;
-            return pelicula;
-        });
+                const peliculasActualizadas = this.state.peliculas.concat(nuevasPeliculas);
 
-        const peliculasActualizadas = this.state.peliculas.concat(nuevasPeliculas)
-
-        this.setState({
-            peliculas: peliculasActualizadas,
-            peliculasFiltradas: peliculasActualizadas,
-        });
+                this.setState({
+                    peliculas: peliculasActualizadas,
+                    peliculasFiltradas: peliculasActualizadas,
+                });
+            });
     };
 
     cambiarVerDescripcion = (index) => {
@@ -61,19 +56,19 @@ class Popular extends Component {
         this.setState(
             (prevState) => ({ page: prevState.page + 1 }),
             this.cargarPeliculas
-        )
+        );
     }
 
     controlarInput = (event) => {
-        const valorInput = event.target.value.toLowerCase()
+        const valorInput = event.target.value.toLowerCase();
         const peliculasFiltradas = this.state.peliculas.filter((pelicula) =>
             pelicula.title.toLowerCase().includes(valorInput)
-        )
-        this.setState({ valorInput, peliculasFiltradas })
+        );
+        this.setState({ valorInput, peliculasFiltradas });
     }
 
     evitarSubmit = (event) => {
-        event.preventDefault()
+        event.preventDefault();
     }
 
     render() {
@@ -122,7 +117,7 @@ class Popular extends Component {
                         ))}
                     </div>
                 )}
-                
+
                 <div className="link-button">
                     <button className='home__div-button2 cargar-mas' onClick={this.cargarMas}>
                         Cargar más
@@ -134,3 +129,4 @@ class Popular extends Component {
 }
 
 export default Popular;
+
