@@ -71,12 +71,12 @@ export default class Resultados extends Component {
                                     </Link>
                                     <h2 className='peliculas__div-h2'>{pelicula.title}</h2>
 
-                                    {/* Mostrar descripción si está activa */}
+                                    
                                     {pelicula.verDescripcion && (
                                         <p className='peliculas__div-p'>{pelicula.overview}</p>
                                     )}
 
-                                    {/* Botón para cambiar entre ver/ocultar descripción */}
+
                                     <div className="button-container">
                                         <button 
                                             className='peliculas__div-button' 

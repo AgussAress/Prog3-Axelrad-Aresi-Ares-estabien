@@ -79,7 +79,6 @@ class Popular extends Component {
     render() {
         return (
             <section className='home__section'>
-                // Ponemos el formulario para filtrar las peliculas populares
                 <form className="busqueda__form" onSubmit={this.evitarSubmit}>
                     <div className="busqueda__div">
                         <input
@@ -123,7 +122,7 @@ class Popular extends Component {
                         ))}
                     </div>
                 )}
-                // ponemos el boton de cargar más
+                
                 <div className="link-button">
                     <button className='home__div-button2 cargar-mas' onClick={this.cargarMas}>
                         Cargar más
