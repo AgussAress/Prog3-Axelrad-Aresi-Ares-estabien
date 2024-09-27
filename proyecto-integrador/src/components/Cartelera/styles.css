@@ -85,3 +85,30 @@
     height: 3em;
     width: 10em;
 }
+
+@media (max-width: 768px) {
+    .home__div-article {
+        width: 75%;
+        margin: 0.5em auto;
+    }
+
+    .home__div-img {
+        width: 100%;
+    }
+
+    .home__section-h1 {
+        font-size: 1em;
+    }
+
+    .home__div-h2 {
+        font-size: 0.8em;
+    }
+
+    .home__div-button {
+        font-size: 0.6em;
+    }
+
+    .home__div-button2 {
+        font-size: 0.6em;
+    }
+}
