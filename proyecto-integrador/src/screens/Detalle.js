@@ -7,7 +7,8 @@ class Detalle extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            pelicula:[]
+            pelicula:[],
+            generos: []
         };
     }
     apiCall(url) {
@@ -15,7 +16,8 @@ class Detalle extends Component {
             .then(response => response.json())
             .then((data) => {
                 this.setState({
-                    pelicula: data
+                    pelicula: data,
+                    generos: data.genres
                 });
             })
             .catch(error => console.log(error));
@@ -35,7 +37,8 @@ class Detalle extends Component {
                 <p className="movie-detail-description">Descripcion: {this.state.pelicula.overview}</p>
                 <p className="movie-detail-rating">Rating: {this.state.pelicula.vote_average}</p>
                 <p className="movie-detail-release-date">Fecha de estreno: {this.state.pelicula.release_date}</p>
-                <p className="movie-detail-genre">Genero: {this.state.pelicula.genre_ids}</p>
+                <p className="movie-detail-genre"> Género: {this.state.generos.map(genre => genre.name).join(', ')}</p>
+                <p className="movie-detail-genre">Duracion: {this.state.pelicula.runtime}</p>
                 <DetalleFavs data= {this.state.pelicula} match = {this.props.match}/>
             </div>
         );
