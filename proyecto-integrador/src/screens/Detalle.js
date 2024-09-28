@@ -38,7 +38,7 @@ class Detalle extends Component {
                 <p className="movie-detail-rating">Rating: {this.state.pelicula.vote_average}</p>
                 <p className="movie-detail-release-date">Fecha de estreno: {this.state.pelicula.release_date}</p>
                 <p className="movie-detail-genre"> Género: {this.state.generos.map(genre => genre.name).join(', ')}</p>
-                <p className="movie-detail-genre">Duracion: {this.state.pelicula.runtime}</p>
+                <p className="movie-detail-genre">Duracion: {this.state.pelicula.runtime} min</p>
                 <DetalleFavs data= {this.state.pelicula} match = {this.props.match}/>
             </div>
         );
